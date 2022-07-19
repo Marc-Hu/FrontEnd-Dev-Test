@@ -1,0 +1,27 @@
+{
+  "pv_mise_en_services": [
+    {
+      "id": 1,
+      "installation_date": "2017-02-09",
+      "company_id": 1,
+      "customer_id": 1,
+      "address": {
+        "street": "Luis Barragan",
+        "city": "Montpellier",
+        "zip_code": "34000",
+        "country": "France"
+      },
+      "created_at": "2022-06-01T17:10:28.888Z",
+      "updated_at": "2022-06-01T17:10:28.888Z",
+      "solar_panels": [
+        {
+          "id": 1,
+          "type_of": "photovoltaic",
+          "serial_number": "123456",
+          "created_at": "2022-06-01T17:10:28.896Z",
+          "updated_at": "2022-06-01T17:10:28.896Z"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,145 @@
+openapi: 3.0.1
+info:
+  title: PV de mise en service (PVMES)
+  description: This is the definition of the mock ruby on rails API provided for this
+    test.
+  version: 1.0.0
+servers:
+- url: /
+paths:
+  /pv_mise_en_services:
+    get:
+      summary: Lists all PVMES
+      responses:
+        200:
+          description: Content successfully created
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/pv_mise_en_service'
+    post:
+      summary: Adds a new PVMES
+      requestBody:
+        description: PVMES that needs to be added to the store. Either use ids of existing entities to create relations or create new entities using nested attributes.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/pv_mise_en_service_creation_request'
+        required: true
+      responses:
+        201:
+          description: Content successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pv_mise_en_service'
+components:
+  schemas:
+    pv_mise_en_service_creation_request:
+      type: object
+      properties:
+        pv_mise_en_service:
+          type: object
+          properties:
+            installation_date:
+              type: string
+              format: date-time
+            company_id:
+              type: integer
+              format: int32
+            customer_id:
+              type: integer
+              format: int32
+            solar_panel_ids:
+              type: array
+              items:
+                type: integer
+                format: int32
+            address:
+              $ref: '#/components/schemas/address'
+            customer_attributes:
+              $ref: '#/components/schemas/customer'
+            company_attributes:
+              $ref: '#/components/schemas/company'
+            solar_panel_attributes:
+              type: array
+              items:
+                $ref: '#/components/schemas/solar_panel'
+    pv_mise_en_service:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        installation_date:
+          type: string
+          format: date-time
+        company_id:
+          type: integer
+          format: int32
+        customer_id:
+          type: integer
+          format: int32
+        address:
+          $ref: '#/components/schemas/address'
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        solar_panels:
+          type: array
+          items:
+            $ref: '#/components/schemas/solar_panel'
+    address:
+      type: object
+      properties:
+        street:
+          type: string
+        city:
+          type: string
+        zip_code:
+          type: string
+        country:
+          type: string
+    customer:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        email:
+          type: string
+        telephone:
+          type: string
+    company:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        siren:
+          type: string
+    solar_panel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        type_of:
+          type: string
+        serial_number:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time

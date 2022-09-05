@@ -6,6 +6,7 @@ import { Location } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { RouterTestingModule, SpyNgModuleFactoryLoader } from '@angular/router/testing';
 import { Component, NgModule, NgModuleFactory } from '@angular/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from "./app.component";
 import { SharedModule } from './shared/shared.module';
@@ -25,6 +26,13 @@ describe("AppComponent", () => {
       imports: [
         RouterTestingModule.withRoutes(routes),
         AppRoutingModule,
+        BrowserModule,
+        HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NgbModule,
+        AppRoutingModule,
+        SharedModule,
       ],
       declarations: [AppComponent],
       providers: [

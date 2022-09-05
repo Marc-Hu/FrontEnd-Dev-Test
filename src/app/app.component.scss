@@ -1,0 +1,17 @@
+@import "variables";
+
+.app-container {
+  min-height: 100vh;
+  position: relative;
+}
+
+.body {
+  padding-bottom: $footer-height;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}

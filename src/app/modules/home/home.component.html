@@ -1,0 +1,135 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 py-3">
+      <form [formGroup]="form" class="d-flex flex-wrap" (submit)="onSubmit()">
+        <div class="col-12 mb-2">
+          <h2 class="text-center">
+            Procès verbal de mise en service (PVMES)
+          </h2>
+        </div>
+        <div class="col-12">
+          <h3>
+            Company information:
+          </h3>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="company_name" class="form-label">Company Name:</label>
+          <input type="text" class="form-control" id="company_name" formControlName="company_name">
+          <span *ngIf="form.controls['company_name'].touched && form.controls['company_name'].invalid"
+                class="form-error">
+            Company name is required
+          </span>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="company_siren" class="form-label">Company SIREN:</label>
+          <input type="text" class="form-control" id="company_siren" formControlName="company_siren">
+          <span *ngIf="form.controls['company_siren'].touched && form.controls['company_siren'].invalid"
+                class="form-error">
+            Company SIREN is required
+          </span>
+        </div>
+        <div class="col-12 mt-4">
+          <h3>
+            Customer information:
+          </h3>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="customer_name" class="form-label">Customer name:</label>
+          <input type="text" class="form-control" id="customer_name" formControlName="customer_name">
+          <span *ngIf="form.controls['customer_name'].touched && form.controls['customer_name'].invalid"
+                class="form-error">
+            Customer name is required
+          </span>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="customer_phone_number" class="form-label">Customer phone number:</label>
+          <input type="text" class="form-control" id="customer_phone_number"
+                 formControlName="customer_phone_number">
+          <span
+              *ngIf="form.controls['customer_phone_number'].touched && form.controls['customer_phone_number'].invalid"
+              class="form-error">
+            Customer phone number is required
+          </span>
+        </div>
+        <div class="col-12 mb-3">
+          <label for="customer_email" class="form-label">Customer phone number:</label>
+          <input type="email" class="form-control" id="customer_email"
+                 formControlName="customer_email">
+          <span *ngIf="form.controls['customer_email'].touched &&
+               form.controls['customer_email'].hasError('required')"
+                class="form-error">
+            Customer email address is required
+          </span>
+          <span *ngIf="form.controls['customer_email'].touched &&
+               form.controls['customer_email'].hasError('pattern')"
+                class="form-error">
+            Customer email address is not valid
+          </span>
+        </div>
+        <div class="col-12 mt-4">
+          <h3>
+            Installation details:
+          </h3>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="address" class="form-label">Installation address:</label>
+          <input type="text" class="form-control" id="address"
+                 formControlName="address">
+          <span
+              *ngIf="form.controls['address'].touched && form.controls['address'].invalid"
+              class="form-error">
+            Installation address is required
+          </span>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="date" class="form-label">Installation date:</label>
+          <div class="input-group">
+            <input class="form-control" placeholder="yyyy-mm-dd" id="date"
+                   name="dp" formControlName="date" ngbDatepicker #d="ngbDatepicker">
+            <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+          </div>
+          <span
+              *ngIf="form.controls['date'].touched && form.controls['date'].invalid"
+              class="form-error">
+            Installation date is required
+          </span>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="nb_panel" class="form-label">Number of panel:</label>
+          <input type="number" class="form-control" id="nb_panel"
+                 formControlName="nb_panel">
+          <span
+              *ngIf="form.controls['nb_panel'].touched && form.controls['nb_panel'].invalid"
+              class="form-error">
+            The number of panel is required
+          </span>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="type" class="form-label">Panel type:</label>
+          <select class="form-control" id="type"
+                  formControlName="type">
+            <option selected [value]="null">Open this select menu</option>
+            <option [ngValue]="panelType" *ngFor="let panelType of panelTypeList">
+              {{ panelType.serial_number }} - {{ panelType.name | titlecase }}
+            </option>
+          </select>
+          <span
+              *ngIf="form.controls['type'].touched && form.controls['type'].invalid"
+              class="form-error">
+            Panel type is required
+          </span>
+        </div>
+        <div class="col-12 text-right">
+          <ngb-alert [type]="'success'" *ngIf="submitSuccess">
+            <p class="mb-0 text-center">
+              The PVMES is now complete
+            </p>
+          </ngb-alert>
+          <button type="submit" class="btn btn-primary">
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

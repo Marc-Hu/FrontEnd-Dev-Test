@@ -1,4 +1,4 @@
-import { PanelType } from './panel-type';
+import { PanelBodyType, PanelType } from './panel-type';
 
 export interface Pv {
   company: {
@@ -14,4 +14,8 @@ export interface Pv {
   nb_panel: number;
   type: PanelType;
   address: string;
+}
+
+export interface PvBody extends Pv {
+  solar_panels_attributes: PanelBodyType[]
 }

@@ -3,13 +3,13 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { PvService } from './pv.service';
-import { Pv } from '../models/pv';
+import { Pv, PvBody } from '../models/pv';
 import { environment } from '../../../environments/environment';
 
 describe('PvService', () => {
   let service: PvService;
   let httpController: HttpTestingController;
-  let mockPv: Pv;
+  let mockPv: PvBody;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -40,6 +40,12 @@ describe('PvService', () => {
         name: 'hybrid'
       },
       address: 'test',
+      solar_panels_attributes: [
+        {
+          serial_number: 123456,
+          type_of: 'hybrid'
+        }
+      ]
     };
   });
 

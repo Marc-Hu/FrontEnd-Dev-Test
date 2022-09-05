@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { PanelType } from '../../shared/models/panel-type';
 import { PvService } from '../../shared/api/pv.service';
-import { Pv } from '../../shared/models/pv';
+import { Pv, PvBody } from '../../shared/models/pv';
 
 @Component({
   selector: 'app-home',
@@ -51,7 +51,7 @@ export class HomeComponent implements OnInit {
   onSubmit(): void {
     if (this.form.valid) {
       const formValue = this.form.value;
-      const body: Pv = {
+      const body: PvBody = {
         company: {
           name: formValue.company_name,
           siren: formValue.company_siren,
@@ -65,6 +65,11 @@ export class HomeComponent implements OnInit {
         nb_panel: formValue.nb_panel,
         type: formValue.type,
         address: formValue.address,
+        solar_panels_attributes: [
+          ...Array(formValue.nb_panel).keys()].map(() => ({
+          type_of: formValue.type.name,
+          serial_number: formValue.serial_number
+        }))
       };
       this.pvService.postPv(body)
         .subscribe((res: Pv) => {
